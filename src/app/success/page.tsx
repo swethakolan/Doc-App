@@ -1,8 +1,9 @@
 'use client';
 
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function SuccessPage() {
+function SuccessContent() {
   const params = useSearchParams();
   const name = params.get("name");
   const date = params.get("date");
@@ -30,5 +31,13 @@ export default function SuccessPage() {
         </a>
       </div>
     </div>
+  );
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<div className="text-center p-8">Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
   );
 }
