@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { HiHome, HiUserGroup, HiMenu, HiX } from 'react-icons/hi';
 import { FaCalendarCheck } from 'react-icons/fa';
+import { FaSignOutAlt } from "react-icons/fa";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function Navbar() {
         className={`flex flex-col sm:flex-row sm:items-center sm:gap-6 mt-4 sm:mt-0 ${
           menuOpen ? 'block' : 'hidden sm:flex'
         }`}
-      >
+      > {/*//false	hidden sm:flex	Hidden on mobile, visible on desktop*/}
         <Link
           href="/home"
           className="flex items-center gap-2 text-gray-700 hover:text-sky-600 py-2"
@@ -52,6 +53,12 @@ export default function Navbar() {
           <FaCalendarCheck className="text-xl" />
           Appointments
         </Link>
+        <Link href="/login" className="flex items-center gap-2 text-gray-700 hover:text-sky-600 py-2"
+        >
+         <FaSignOutAlt className="text-xl" />
+              Logout
+        </Link>
+
       </div>
     </nav>
   );

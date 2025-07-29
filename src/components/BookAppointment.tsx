@@ -61,13 +61,29 @@ export default function BookAppointment() {
       return;
     }
 
-    router.push(
-      `/success?name=${encodeURIComponent(doctor.name)}&date=${format(
-        selectedDate,
-        "PPP"
-      )}&time=${selectedTime}`
-    );
+     const newAppointment = {
+    id: Date.now(),
+    doctorName: doctor.name,
+    specialty: doctor.specialty,
+    photo: doctor.photo,
+    location: doctor.location,
+    date: format(selectedDate, "PPP"),
+    time: selectedTime,
   };
+
+  const existingAppointments = JSON.parse(
+    localStorage.getItem("appointments") || "[]"
+  );
+
+  existingAppointments.push(newAppointment);
+
+  localStorage.setItem("appointments", JSON.stringify(existingAppointments));
+
+  // Navigate to success page
+  router.push(
+    `/success?name=${encodeURIComponent(doctor.name)}&date=${newAppointment.date}&time=${selectedTime}`
+  );
+};
 
   if (loading) return <div className="p-4 text-center">Loading doctor...</div>;
   if (!doctor) return <div className="p-4 text-center">Doctor not found.</div>;
