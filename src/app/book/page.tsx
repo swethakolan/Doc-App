@@ -23,7 +23,7 @@ export default function DoctorsPage() {
 
   // Fetch data from the API route
   useEffect(() => {
-    fetch("/api/doctors")
+    fetch('https://495decff-c75f-4591-a440-c613b1d00e71.mock.pstmn.io/doctors')
       .then((res) => res.json())
       .then((data) => setDoctors(data));
   }, []);
